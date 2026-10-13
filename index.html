@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flip &amp; Match - Memory Card Game</title>
+  <!-- All styling lives in style.css (same folder) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Falling confetti pieces are added here by script.js when the game is won -->
+  <div id="confetti" class="confetti" aria-hidden="true"></div>
+
+  <main class="app">
+
+    <!-- ========== SCREEN 1: WELCOME ========== -->
+    <section id="welcome-screen" class="screen active">
+      <!-- Three little cards that flip by themselves, just for decoration -->
+      <div class="demo-row" aria-hidden="true">
+        <div class="demo-card" style="--delay: 0s">
+          <div class="card-inner">
+            <div class="card-face card-cover">?</div>
+            <div class="card-face card-symbol">🚀</div>
+          </div>
+        </div>
+        <div class="demo-card" style="--delay: 0.8s">
+          <div class="card-inner">
+            <div class="card-face card-cover">?</div>
+            <div class="card-face card-symbol">🍓</div>
+          </div>
+        </div>
+        <div class="demo-card" style="--delay: 1.6s">
+          <div class="card-inner">
+            <div class="card-face card-cover">?</div>
+            <div class="card-face card-symbol">🎮</div>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="title">Flip &amp; Match</h1>
+      <p class="lead">
+        Turn over two cards at a time and find every matching pair.
+        Use as few moves as you can, and beat the clock.
+      </p>
+      <button id="start-btn" class="btn btn-primary btn-large">Start Game</button>
+    </section>
+
+    <!-- ========== SCREEN 2: CHOOSE DIFFICULTY ========== -->
+    <section id="levels-screen" class="screen">
+      <h2 class="heading">Choose a level</h2>
+      <p class="lead">More pairs make a bigger challenge.</p>
+
+      <div class="level-list">
+        <button class="level-btn level-easy" data-level="easy">
+          <span class="level-name">Easy</span>
+          <span class="level-info">4 pairs, 8 cards</span>
+          <span class="level-best"></span>
+        </button>
+        <button class="level-btn level-medium" data-level="medium">
+          <span class="level-name">Medium</span>
+          <span class="level-info">6 pairs, 12 cards</span>
+          <span class="level-best"></span>
+        </button>
+        <button class="level-btn level-hard" data-level="hard">
+          <span class="level-name">Hard</span>
+          <span class="level-info">8 pairs, 16 cards</span>
+          <span class="level-best"></span>
+        </button>
+      </div>
+
+      <button id="back-btn" class="btn btn-ghost">Back</button>
+    </section>
+
+    <!-- ========== SCREEN 3: THE GAME ========== -->
+    <section id="game-screen" class="screen">
+
+      <div class="game-top">
+        <h2 id="level-title" class="game-title">Easy</h2>
+        <div class="game-actions">
+          <button id="restart-btn" class="btn btn-small btn-primary">Restart Game</button>
+          <button id="new-game-btn" class="btn btn-small btn-ghost">New Game</button>
+        </div>
+      </div>
+
+      <!-- Moves, timer and pairs -->
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-label">Moves</span>
+          <span id="moves" class="stat-value">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Time</span>
+          <span id="timer" class="stat-value">0:00</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Pairs</span>
+          <span id="pairs" class="stat-value">0 / 4</span>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div id="progress" class="progress" role="progressbar"
+           aria-label="Pairs matched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <p id="best-line" class="best-line">Best: none yet</p>
+
+      <!-- The cards are created by script.js and placed in here -->
+      <div id="board" class="board"></div>
+    </section>
+
+    <!-- ========== SCREEN 4: RESULTS ========== -->
+    <section id="results-screen" class="screen">
+      <div class="trophy" aria-hidden="true">🏆</div>
+      <h2 class="heading">Congratulations!</h2>
+      <p id="results-message" class="lead">You matched every pair.</p>
+
+      <div class="results-stats">
+        <div class="stat">
+          <span class="stat-label">Time taken</span>
+          <span id="result-time" class="stat-value">0:00</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Total moves</span>
+          <span id="result-moves" class="stat-value">0</span>
+        </div>
+      </div>
+
+      <p id="new-best" class="new-best" hidden>New best score!</p>
+      <p id="result-best" class="best-line"></p>
+
+      <div class="results-actions">
+        <button id="play-again-btn" class="btn btn-primary">Play Again</button>
+        <button id="results-new-game-btn" class="btn btn-ghost">New Game</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- All game logic lives in script.js (same folder) -->
+  <script src="script.js"></script>
+</body>
+</html>
